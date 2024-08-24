@@ -18,6 +18,9 @@ let UsersService = class UsersService {
     constructor(prisma) {
         this.prisma = prisma;
     }
+    async findOneByEmail(email) {
+        return this.prisma.user.findFirst({ where: { email } });
+    }
     async create(createUserDto) {
         const hashedPassword = await bcrypt.hash(createUserDto.password, exports.roundsOfHashing);
         createUserDto.password = hashedPassword;
@@ -25,21 +28,6 @@ let UsersService = class UsersService {
     }
     findAll() {
         return this.prisma.user.findMany();
-    }
-    findOne(id) {
-        return this.prisma.user.findUnique({ where: { id } });
-    }
-    async update(id, updateUserDto) {
-        if (updateUserDto.password) {
-            updateUserDto.password = await bcrypt.hash(updateUserDto.password, exports.roundsOfHashing);
-        }
-        return this.prisma.user.update({ where: { id }, data: updateUserDto });
-    }
-    remove(id) {
-        return this.prisma.user.delete({ where: { id } });
-    }
-    async findOneByEmail(email) {
-        return this.prisma.user.findUnique({ where: { email } });
     }
 };
 exports.UsersService = UsersService;

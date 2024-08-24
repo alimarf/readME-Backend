@@ -3,15 +3,15 @@ import {
   Get,
   Post,
   Body,
-  Patch,
-  Param,
-  Delete,
-  ParseIntPipe,
+  // Patch,
+  // Param,
+  // Delete,
+  // ParseIntPipe,
   // UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+// import { UpdateUserDto } from './dto/update-user.dto';
 
 import { UserEntity } from './entities/user.entity';
 
@@ -32,24 +32,24 @@ export class UsersController {
     return users.map((user) => new UserEntity(user));
   }
 
-  @Get(':id')
-  // @UseGuards(JwtAuthGuard)
-  async findOne(@Param('id', ParseIntPipe) id: number) {
-    return new UserEntity(await this.usersService.findOne(id));
-  }
+  // @Get(':id')
+  // // @UseGuards(JwtAuthGuard)
+  // async findOne(@Param('id', ParseIntPipe) id: number) {
+  //   return new UserEntity(await this.usersService.findOne(id));
+  // }
 
-  @Patch(':id')
-  // @UseGuards(JwtAuthGuard)
-  async update(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() updateUserDto: UpdateUserDto,
-  ) {
-    return new UserEntity(await this.usersService.update(id, updateUserDto));
-  }
+  // @Patch(':id')
+  // // @UseGuards(JwtAuthGuard)
+  // async update(
+  //   @Param('id', ParseIntPipe) id: number,
+  //   @Body() updateUserDto: UpdateUserDto,
+  // ) {
+  //   return new UserEntity(await this.usersService.update(id, updateUserDto));
+  // }
 
-  @Delete(':id')
-  // @UseGuards(JwtAuthGuard)
-  async remove(@Param('id', ParseIntPipe) id: number) {
-    return new UserEntity(await this.usersService.remove(id));
-  }
+  // @Delete(':id')
+  // // @UseGuards(JwtAuthGuard)
+  // async remove(@Param('id', ParseIntPipe) id: number) {
+  //   return new UserEntity(await this.usersService.remove(id));
+  // }
 }

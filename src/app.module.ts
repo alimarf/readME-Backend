@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { SupabaseModule } from './supabase/supabase.module';
 import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from './prisma/prisma.module';
+import { UsersModule } from './users/users.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -11,6 +12,7 @@ import { PrismaModule } from './prisma/prisma.module';
     }),
     SupabaseModule,
     PrismaModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
